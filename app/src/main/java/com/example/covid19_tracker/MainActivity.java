@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.covid19tracker.MESSAGE";
@@ -15,13 +14,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    /** Called when user taps the send button */
     public void logSymptoms(View view) {
         Intent intent = new Intent(this, LogSymptomsActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
+    public void findPeople(View view) {
+        Intent intent = new Intent(this, FindPeopleActivity.class);
+        startActivity(intent);
+    }
+
+    public void viewLog(View view) {
+        Intent intent = new Intent(this, ViewLogActivity.class);
+        startActivity(intent);
+    }
+
+    public void viewMap(View view) {
+        Intent intent = new Intent(this, ViewMapActivity.class);
+        startActivity(intent);
+    }
+
+    public void aboutInfo(View view) {
+        Intent intent = new Intent(this, AboutInfoActivity.class);
+        startActivity(intent);
+    }
 }
