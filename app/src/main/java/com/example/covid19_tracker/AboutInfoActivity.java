@@ -1,9 +1,9 @@
 package com.example.covid19_tracker;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
-class AboutInfoActivity extends AppCompatActivity {
+public class AboutInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

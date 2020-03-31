@@ -3,7 +3,7 @@ package com.example.covid19_tracker;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-class ViewLogActivity extends AppCompatActivity {
+public class ViewLogActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

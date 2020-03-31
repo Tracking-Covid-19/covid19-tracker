@@ -3,7 +3,7 @@ package com.example.covid19_tracker;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-class ViewMapActivity extends AppCompatActivity {
+public class ViewMapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
