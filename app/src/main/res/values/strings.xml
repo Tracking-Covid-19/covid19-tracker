@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">covid19-tracker</string>
+    <string name="app_name">COVID19 Tracker</string>
     <string name="button_logSymptoms">Log Symptoms</string>
     <string name="button_findPeople">Find People Near Me</string>
     <string name="button_viewLog">View Log</string>
