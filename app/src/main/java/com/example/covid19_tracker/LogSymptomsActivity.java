@@ -1,6 +1,7 @@
 package com.example.covid19_tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 public class LogSymptomsActivity extends AppCompatActivity {
@@ -10,5 +11,4 @@ public class LogSymptomsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_symptoms);
     }
-
 }
