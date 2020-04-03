@@ -74,7 +74,7 @@
         android:layout_marginLeft="96dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:ellipsize="none"
         android:fontFamily="@font/baloo"
         android:onClick="logSymptoms"
@@ -82,7 +82,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

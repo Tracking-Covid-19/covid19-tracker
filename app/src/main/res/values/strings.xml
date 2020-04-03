@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">COVID19 Tracker</string>
+
+    <!-- Buttons on main activity -->
     <string name="button_logSymptoms">Log Symptoms</string>
     <string name="button_findPeople">Find People Near Me</string>
     <string name="button_viewLog">View Log</string>
     <string name="button_viewMap">View Map</string>
+
+    <!-- Side activity titles -->
+    <string name="title_logSymptoms">Log Symptoms</string>
+
+    <!-- Symptoms -->
+    <string name="symptom_cough">Cough</string>
+    <string name="symptom_sniffles">Sniffles</string>
+    <string name="symptom_sore_throat">Sore Throat</string>
+    <string name="symptom_muscle_aches">Muscle Aches</string>
 </resources>

@@ -9,21 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LogSymptomsActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".FindPeopleActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".ViewLogActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".ViewMapActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".AboutInfoActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+        <activity android:name=".LogSymptomsActivity"></activity>
+        <activity
+            android:name=".FindPeopleActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ViewLogActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ViewMapActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".AboutInfoActivity"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
