@@ -15,4 +15,6 @@
     <string name="symptom_sniffles">Sniffles</string>
     <string name="symptom_sore_throat">Sore Throat</string>
     <string name="symptom_muscle_aches">Muscle Aches</string>
+    <string name="symptom_fever">Fever</string>
+    <string name="symptom_difficulty_breathing">Difficulty Breathing</string>
 </resources>

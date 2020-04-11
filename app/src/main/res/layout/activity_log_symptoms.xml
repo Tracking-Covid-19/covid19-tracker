@@ -24,11 +24,12 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="356dp"
-        android:layout_height="535dp"
+        android:layout_height="314dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -39,10 +40,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="48dp" />
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
@@ -51,10 +48,6 @@
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="24dp" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -102,10 +95,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="24dp" />
-
             <SeekBar
                 android:id="@+id/seekBar3"
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -129,12 +118,54 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <SeekBar
+                android:id="@+id/seekBar4"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:hapticFeedbackEnabled="true"
+                android:indeterminate="true"
+                android:max="10"
+                android:progress="3" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="24dp" />
 
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/symptom_fever"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <SeekBar
-                android:id="@+id/seekBar4"
+                android:id="@+id/seekBar5"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:hapticFeedbackEnabled="true"
+                android:indeterminate="true"
+                android:max="10"
+                android:progress="3" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/symptom_difficulty_breathing"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/seekBar6"
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
@@ -150,10 +181,21 @@
         android:id="@+id/dateText"
         android:layout_width="140dp"
         android:layout_height="42dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="40dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/LogSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
