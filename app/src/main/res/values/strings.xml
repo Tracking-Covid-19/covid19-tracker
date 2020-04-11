@@ -17,4 +17,5 @@
     <string name="symptom_muscle_aches">Muscle Aches</string>
     <string name="symptom_fever">Fever</string>
     <string name="symptom_difficulty_breathing">Difficulty Breathing</string>
+    <string name="submit_symptom_button">Submit</string>
 </resources>

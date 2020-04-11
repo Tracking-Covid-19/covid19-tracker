@@ -50,14 +50,14 @@
                 android:textStyle="bold" />
 
             <SeekBar
-                android:id="@+id/seekBar"
+                android:id="@+id/seekBar1"
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:hapticFeedbackEnabled="true"
-                android:indeterminate="true"
+                android:indeterminate="false"
                 android:max="10"
-                android:progress="1" />
+                android:progress="0" />
 
             <Space
                 android:layout_width="match_parent"
@@ -78,9 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:hapticFeedbackEnabled="true"
-                android:indeterminate="true"
+                android:indeterminate="false"
                 android:max="10"
-                android:progress="3" />
+                android:progress="0" />
 
             <Space
                 android:layout_width="match_parent"
@@ -101,9 +101,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:hapticFeedbackEnabled="true"
-                android:indeterminate="true"
+                android:indeterminate="false"
                 android:max="10"
-                android:progress="3" />
+                android:progress="0"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -124,9 +124,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:hapticFeedbackEnabled="true"
-                android:indeterminate="true"
+                android:indeterminate="false"
                 android:max="10"
-                android:progress="3" />
+                android:progress="0"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -141,15 +141,16 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+
             <SeekBar
                 android:id="@+id/seekBar5"
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:hapticFeedbackEnabled="true"
-                android:indeterminate="true"
+                android:indeterminate="false"
                 android:max="10"
-                android:progress="3" />
+                android:progress="0"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -170,9 +171,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:hapticFeedbackEnabled="true"
-                android:indeterminate="true"
+                android:indeterminate="false"
                 android:max="10"
-                android:progress="3" />
+                android:progress="0"/>
 
         </LinearLayout>
     </ScrollView>
@@ -193,7 +194,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
-        android:text="Submit"
+        android:text="@string/submit_symptom_button"
+        android:onClick="submitLog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
