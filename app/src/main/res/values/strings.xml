@@ -18,4 +18,22 @@
     <string name="symptom_fever">Fever</string>
     <string name="symptom_difficulty_breathing">Difficulty Breathing</string>
     <string name="submit_symptom_button">Submit</string>
+
+    <!-- Login/sign up page Stuff -->
+    <string name="Login_button">Login</string>
+    <string name="Create_new_account">Create New Account</string>
+    <string name="About_Us">About Us</string>
+
+    <!-- Login page-->
+    <string name="Back_button">Back</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Login">Login</string>
+    <string name="Forgot_password">Forgot password</string>
+
+    <!-- Create account page-->
+    <string name="CA_Username">Username (8 Letters Only)</string>
+    <string name="Create_Account">Create Account</string>
+    <string name="Confirm_Password">Confirm Password</string>
+
 </resources>

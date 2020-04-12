@@ -72,7 +72,7 @@ public class LogSymptomsActivity extends AppCompatActivity {
                 }
         }
     }
-//    final Button submitButton = findViewById(R.id.textView6);
+
     public void submitLog(View view){
         saveRecords(readSeekBars());
     }
