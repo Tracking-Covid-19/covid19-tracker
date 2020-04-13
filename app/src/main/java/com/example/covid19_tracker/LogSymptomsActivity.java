@@ -30,52 +30,52 @@ public class LogSymptomsActivity extends AppCompatActivity {
         date.setText(date_n);
     }
 
-    Symptoms readSeekBars(){
-        SeekBar coughBar = findViewById(R.id.seekBar1);
-        SeekBar sniffleBar = findViewById(R.id.seekBar2);
-        SeekBar soreBar = findViewById(R.id.seekBar3);
-        SeekBar muscleBar = findViewById(R.id.seekBar4);
-        SeekBar feverBar = findViewById(R.id.seekBar5);
-        SeekBar breathBar = findViewById(R.id.seekBar6);
+//    Symptoms readSeekBars(){
+//        SeekBar coughBar = findViewById(R.id.seekBar1);
+//        SeekBar sniffleBar = findViewById(R.id.seekBar2);
+//        SeekBar soreBar = findViewById(R.id.seekBar3);
+//        SeekBar muscleBar = findViewById(R.id.seekBar4);
+//        SeekBar feverBar = findViewById(R.id.seekBar5);
+//        SeekBar breathBar = findViewById(R.id.seekBar6);
+//
+//        Symptoms todaySymptom = new Symptoms(coughBar.getProgress(), sniffleBar.getProgress(), soreBar.getProgress(),
+//                muscleBar.getProgress(), feverBar.getProgress(), breathBar.getProgress());
+//        return todaySymptom;
+//    }
 
-        Symptoms todaySymptom = new Symptoms(coughBar.getProgress(), sniffleBar.getProgress(), soreBar.getProgress(),
-                muscleBar.getProgress(), feverBar.getProgress(), breathBar.getProgress());
-        return todaySymptom;
-    }
+//    void saveRecords (Symptoms symptom){
+//        FileOutputStream fos = null;
+//        try {
+//            StringBuilder symptomString = new StringBuilder();
+//            fos = openFileOutput("symptomLog.txt", MODE_APPEND);
+//            symptomString.append(symptom.sniffles + " ");
+//            symptomString.append(symptom.muscleAches + " ");
+//            symptomString.append(symptom.cough + " ");
+//            symptomString.append(symptom.soreThroat + " ");
+//            symptomString.append(symptom.fever + " ");
+//            symptomString.append(symptom.difficultyBreathing + " ");
+//            symptomString.append(symptom.date);
+//            symptomString.append("\n");
+//            String toWrite = symptomString.toString();
+//            fos.write(toWrite.getBytes());
+//            Toast.makeText(this, "Saved to " + getFilesDir() + "/symptomLog.txt", Toast.LENGTH_LONG);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        if (fos != null){
+//                try {
+//                    fos.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//        }
+//    }
 
-    void saveRecords (Symptoms symptom){
-        FileOutputStream fos = null;
-        try {
-            StringBuilder symptomString = new StringBuilder();
-            fos = openFileOutput("symptomLog.txt", MODE_APPEND);
-            symptomString.append(symptom.sniffles + " ");
-            symptomString.append(symptom.muscleAches + " ");
-            symptomString.append(symptom.cough + " ");
-            symptomString.append(symptom.soreThroat + " ");
-            symptomString.append(symptom.fever + " ");
-            symptomString.append(symptom.difficultyBreathing + " ");
-            symptomString.append(symptom.date);
-            symptomString.append("\n");
-            String toWrite = symptomString.toString();
-            fos.write(toWrite.getBytes());
-            Toast.makeText(this, "Saved to " + getFilesDir() + "/symptomLog.txt", Toast.LENGTH_LONG);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (fos != null){
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-        }
-    }
-
-    public void submitLog(View view){
-        saveRecords(readSeekBars());
-    }
+//    public void submitLog(View view){
+//        saveRecords(readSeekBars());
+//    }
 
 
 }

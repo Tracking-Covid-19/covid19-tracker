@@ -38,5 +38,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AboutInfoActivity.class);
         startActivity(intent);
     }
+    public void loginOrCreate(View view) {
+        Intent intent = new Intent(this, LoginOrSignUpActivity.class);
+        startActivity(intent);
+    }
+
 
 }

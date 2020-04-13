@@ -118,4 +118,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_help" />
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="145dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/baloo"
+        android:text="@string/button_loginOrCreateAccount"
+        android:onClick="loginOrCreate"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
