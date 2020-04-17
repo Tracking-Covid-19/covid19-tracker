@@ -7,19 +7,29 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.nfc.Tag;
 import android.util.Log;
 
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table_name = "symptom_log";
     private static final String col1 = "date";
     private static final String col2 = "symptoms";
+    SQLiteDatabase db;
     public DatabaseHelper(Context context){
         super(context, Table_name, null, 1);
-
-
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + Table_name + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + col2 + "TEXT)";
+        String createTable = "CREATE TABLE symptom_log (" +
+                "day_of_the_year INTEGER NOT NULL, " +
+                "cough INTEGER NOT NULL, " +
+                "sniffles INTEGER NOT NULL, " +
+                "sore_throat INTEGER NOT NULL, " +
+                "muscle_aches INTEGER NOT NULL, " +
+                "fever INTERGER NOT NULL,"  +
+                "difficulty_breathing INTEGER NOT NULL, " +
+                "remarks_of_the_day TEXT NOT NULL " +
+                ")";
         db.execSQL(createTable);
 
     }
@@ -30,10 +40,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String item){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean addData(List<Symptoms> symptomsList, String msg, int dayOfYear){
+        db = this.getWritableDatabase();
         ContentValues CV = new ContentValues();
-        CV.put(col2, item);
+        CV.put("day_of_the_year", dayOfYear);
+        CV.put("cough", symptomsList.get(0).intensity);
+        CV.put("sniffles", symptomsList.get(1).intensity);
+        CV.put("sore_throat", symptomsList.get(2).intensity);
+        CV.put("muscle_aches", symptomsList.get(3).intensity);
+        CV.put("fever", symptomsList.get(4).intensity);
+        CV.put("difficulty_breathing", symptomsList.get(5).intensity);
+        CV.put("remarks_of_the_day", msg);
+
+//        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
+        long result = db.insert(Table_name, null, CV);
+        if (result == -1){
+            return true;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean addData(int item, String col_name){
+
+        ContentValues CV = new ContentValues();
+        CV.put(col_name, item);
         Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
         long result = db.insert(Table_name, null, CV);
         if (result == -1){
@@ -41,5 +72,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
+    }
+
+    public boolean addData(String item, String col_name){
+
+        ContentValues CV = new ContentValues();
+        CV.put(col_name, item);
+        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
+        long result = db.insert(Table_name, null, CV);
+        if (result == -1){
+            return false;
+        } else {
+            return true;
+        }
+
+
+
+
     }
 }

@@ -3,8 +3,8 @@ import java.util.GregorianCalendar;
 
 public class Symptoms {
 
-    private static String name;
-    private int intensity;
+    public String name;
+    public int intensity;
     private static GregorianCalendar date;
     private String additionalDetails;
 
@@ -25,7 +25,6 @@ public class Symptoms {
         GregorianCalendar symptomDate = date;
         return symptomDate;
     }
-    public static String getName() {
-        return name;
-    }
+
+
 }
