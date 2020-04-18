@@ -2,6 +2,7 @@ package com.example.covid19_tracker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -39,6 +40,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public boolean contains(String id){
+        SQLiteDatabase db = getWritableDatabase();
+        String selectString = "SELECT * FROM " + Table_name + " WHERE " + "day_of_the_year" + " =?";
+        Cursor cursor = db.rawQuery(selectString, new String[] {id});
+
+        boolean hasObject = false;
+        if(cursor.moveToFirst()){
+            hasObject = true;
+        }
+        cursor.close();
+        db.close();
+        return hasObject;
+    }
+    public boolean replaceData(List<Symptoms> symptomsList, String msg, int dayOfYear){
+        db = this.getWritableDatabase();
+        db.delete(Table_name, "day_of_the_year" + "=" + dayOfYear, null);
+        ContentValues CV = new ContentValues();
+        CV.put("day_of_the_year", dayOfYear);
+        CV.put("cough", symptomsList.get(0).intensity);
+        CV.put("sniffles", symptomsList.get(1).intensity);
+        CV.put("sore_throat", symptomsList.get(2).intensity);
+        CV.put("muscle_aches", symptomsList.get(3).intensity);
+        CV.put("fever", symptomsList.get(4).intensity);
+        CV.put("difficulty_breathing", symptomsList.get(5).intensity);
+        CV.put("remarks_of_the_day", msg);
+
+        Log.d("DatabaseHelper", "AddData: Adding today's symptoms to" + Table_name);
+        long result = db.insert(Table_name, null, CV);
+        if (result == -1){
+            db.close();
+            return false;
+        } else {
+            db.close();
+            return true;
+        }
+    }
+
     public boolean addData(List<Symptoms> symptomsList, String msg, int dayOfYear){
         db = this.getWritableDatabase();
         ContentValues CV = new ContentValues();
@@ -54,8 +92,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d("DatabaseHelper", "AddData: Adding today's symptoms to" + Table_name);
         long result = db.insert(Table_name, null, CV);
         if (result == -1){
+            db.close();
             return false;
         } else {
+            db.close();
             return true;
         }
     }

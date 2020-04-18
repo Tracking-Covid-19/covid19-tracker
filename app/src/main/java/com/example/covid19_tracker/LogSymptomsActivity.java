@@ -1,9 +1,11 @@
 package com.example.covid19_tracker;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,33 +57,43 @@ public class LogSymptomsActivity extends AppCompatActivity {
         return symptomsList;
     }
 
-
-
-    public boolean saveRecords (List<Symptoms> symptomsList){
-
+    public int saveRecords (List<Symptoms> symptomsList){
         Calendar calendar = Calendar.getInstance();
+        int result;
         int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
-        boolean result = mDatabaseHelper.addData(symptomsList, " ", dayOfYear);
+        if (mDatabaseHelper.contains(Integer.toString(dayOfYear))){
+            result = 1;
+            mDatabaseHelper.replaceData(symptomsList, " ", dayOfYear);
+        } else {
+            boolean saveResult = mDatabaseHelper.addData(symptomsList, " ", dayOfYear);
+            if (saveResult){
+                result = 2;
+            } else {
+                result = 0;
+            }
+
+        }
+
         return result;
-//        boolean insertData = mDatabaseHelper.addData(dayOfYear, "day_of_the_year");
-//        if (!insertData){
-//            throw new IllegalArgumentException("failed to save to database");
-//        }
-//        for (Symptoms s: symptomsList){
-//            insertData = mDatabaseHelper.addData(s.intensity, s.name);
-//            if (!insertData){
-//                throw new IllegalArgumentException("failed to save to database");
-//            }
-//        }
-//        mDatabaseHelper.addData("not yet implemented","remarks_of_the_day");
     }
 
     public void submitLog(View view){
-        if(saveRecords(readSeekBars())){
+        int saveResult = saveRecords(readSeekBars());
+        Context context = getApplicationContext();
+        CharSequence text;
 
+        if(saveResult == 2){
+             text = "Symptom data saved!";
+        } else if (saveResult == 1){
+             text = "Symptom data updated!";
         } else {
-
+             text = "Fail to save symptom data";
         }
+
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
 
