@@ -1,11 +1,12 @@
 package com.example.covid19_tracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,11 +57,12 @@ public class LogSymptomsActivity extends AppCompatActivity {
 
 
 
-    public void saveRecords (List<Symptoms> symptomsList){
+    public boolean saveRecords (List<Symptoms> symptomsList){
 
         Calendar calendar = Calendar.getInstance();
         int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
-        mDatabaseHelper.addData(symptomsList, " ", dayOfYear);
+        boolean result = mDatabaseHelper.addData(symptomsList, " ", dayOfYear);
+        return result;
 //        boolean insertData = mDatabaseHelper.addData(dayOfYear, "day_of_the_year");
 //        if (!insertData){
 //            throw new IllegalArgumentException("failed to save to database");
@@ -75,7 +77,11 @@ public class LogSymptomsActivity extends AppCompatActivity {
     }
 
     public void submitLog(View view){
-        saveRecords(readSeekBars());
+        if(saveRecords(readSeekBars())){
+
+        } else {
+
+        }
     }
 
 

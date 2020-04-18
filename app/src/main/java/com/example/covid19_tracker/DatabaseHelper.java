@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.nfc.Tag;
 import android.util.Log;
 
 import java.util.List;
@@ -52,42 +51,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         CV.put("difficulty_breathing", symptomsList.get(5).intensity);
         CV.put("remarks_of_the_day", msg);
 
+        Log.d("DatabaseHelper", "AddData: Adding today's symptoms to" + Table_name);
+        long result = db.insert(Table_name, null, CV);
+        if (result == -1){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+//    public boolean addData(int item, String col_name){
+//
+//        ContentValues CV = new ContentValues();
+//        CV.put(col_name, item);
 //        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
-        long result = db.insert(Table_name, null, CV);
-        if (result == -1){
-            return true;
-        } else {
-            return true;
-        }
-    }
+//        long result = db.insert(Table_name, null, CV);
+//        if (result == -1){
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
-    public boolean addData(int item, String col_name){
-
-        ContentValues CV = new ContentValues();
-        CV.put(col_name, item);
-        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
-        long result = db.insert(Table_name, null, CV);
-        if (result == -1){
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public boolean addData(String item, String col_name){
-
-        ContentValues CV = new ContentValues();
-        CV.put(col_name, item);
-        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
-        long result = db.insert(Table_name, null, CV);
-        if (result == -1){
-            return false;
-        } else {
-            return true;
-        }
-
-
-
-
-    }
+//    public boolean addData(String item, String col_name){
+//
+//        ContentValues CV = new ContentValues();
+//        CV.put(col_name, item);
+//        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
+//        long result = db.insert(Table_name, null, CV);
+//        if (result == -1){
+//            return false;
+//        } else {
+//            return true;
+//        }
+//
+//
+//
+//
+//    }
 }
