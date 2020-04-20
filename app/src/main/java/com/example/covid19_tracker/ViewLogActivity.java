@@ -26,7 +26,7 @@ public class ViewLogActivity extends AppCompatActivity {
             list.add(s);
         }
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
-                R.layout.item_simple_itemview, list);
+                android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
     }
 
