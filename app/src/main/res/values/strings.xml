@@ -4,7 +4,7 @@
     <!-- Buttons on main activity -->
     <string name="button_logSymptoms">Log Symptoms</string>
     <string name="button_findPeople">Find People Near Me</string>
-    <string name="button_viewLog">View Log</string>
+    <string name="button_viewLog">View/Edit Log</string>
     <string name="button_viewMap">View Map</string>
     <string name="button_loginOrCreateAccount">Login / Sign Up</string>
 
