@@ -100,6 +100,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+    public Cursor getAllData(){
+        db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("Select * from " + Table_name, null);
+        return res;
+    }
+
+
+
+    
 //    public boolean addData(int item, String col_name){
 //
 //        ContentValues CV = new ContentValues();
