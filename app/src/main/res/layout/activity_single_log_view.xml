@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/coughText"
         android:layout_width="83dp"
         android:layout_height="53dp"
         android:layout_marginTop="36dp"
@@ -92,7 +92,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText13"
+        android:id="@+id/muscleacheText"
         android:layout_width="83dp"
         android:layout_height="53dp"
         android:layout_marginTop="268dp"
@@ -105,7 +105,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText14"
+        android:id="@+id/sorethroatText"
         android:layout_width="83dp"
         android:layout_height="53dp"
         android:layout_marginTop="196dp"
@@ -118,7 +118,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText16"
+        android:id="@+id/DBText"
         android:layout_width="83dp"
         android:layout_height="53dp"
         android:layout_marginTop="416dp"
@@ -131,7 +131,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText11"
+        android:id="@+id/snifflesText"
         android:layout_width="83dp"
         android:layout_height="53dp"
         android:layout_marginTop="120dp"
@@ -144,7 +144,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText15"
+        android:id="@+id/feverText"
         android:layout_width="83dp"
         android:layout_height="53dp"
         android:layout_marginTop="344dp"
@@ -169,25 +169,45 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText17"
+        android:id="@+id/RemarksText"
         android:layout_width="310dp"
         android:layout_height="77dp"
-        android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/singleLogSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/submit_symptom_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText17" />
+        app:layout_constraintTop_toBottomOf="@+id/RemarksText" />
+
+    <Button
+        android:id="@+id/singleLogBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Back"
+        app:layout_constraintTop_toBottomOf="@+id/RemarksText"
+        tools:layout_editor_absoluteX="51dp" />
+
+    <TextView
+        android:id="@+id/singleLogDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

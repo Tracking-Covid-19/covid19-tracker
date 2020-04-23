@@ -58,6 +58,7 @@ public class ViewLogActivity extends AppCompatActivity {
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,9 +68,11 @@ public class ViewLogActivity extends AppCompatActivity {
                 String month = dateParts[1];
                 String day = dateParts[2];
                 GregorianCalendar GC = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-                int dayOfYearIndex = GC.get(Calendar.DAY_OF_YEAR);
+                int dayOfYearIndex = GC.get(Calendar.DAY_OF_YEAR) - 30;
                 Intent intent = new Intent(getApplicationContext(), SingleLogViewActivity.class);
                 intent.putExtra("LogID", dayOfYearIndex);
+                intent.putExtra("date", dataString);
+
                 startActivity(intent);
 //                int duration = Toast.LENGTH_SHORT;
 //                Toast toast = Toast.makeText(getApplicationContext(), dayOfYearIndex, duration);
