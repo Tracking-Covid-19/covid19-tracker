@@ -80,7 +80,10 @@ public class ViewLogActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void addMissingLog(View view){
+        Intent intent = new Intent(this, AddMissingLogActivity.class);
+        startActivity(intent);
+    }
     private List<String[]> getData(){
         List<String[]> result = new ArrayList<>();
         mDatabaseHelper = new DatabaseHelper(this);

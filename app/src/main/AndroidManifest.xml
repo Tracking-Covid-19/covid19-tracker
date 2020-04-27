@@ -33,6 +33,7 @@
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".LoginPageActivity" />
         <activity android:name=".SingleLogViewActivity" />
+        <activity android:name=".AddMissingLogActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

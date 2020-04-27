@@ -11,8 +11,8 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String Table_name = "symptom_log";
-    private static final String col1 = "date";
-    private static final String col2 = "symptoms";
+    private static final String col1 = "day_of_the_year";
+
     SQLiteDatabase db;
     public DatabaseHelper(Context context){
         super(context, Table_name, null, 1);
@@ -103,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllData(){
         db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("Select * from " + Table_name, null);
+        Cursor res = db.rawQuery("SELECT * FROM " + Table_name + " ORDER BY " + col1 + " DESC", null);
         return res;
     }
 
