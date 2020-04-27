@@ -53,6 +53,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return hasObject;
     }
+
+    public boolean deleteData(int dayOfYear){
+        db = this.getWritableDatabase();
+        int result;
+        result = db.delete(Table_name, "day_of_the_year" + "=" + dayOfYear, null);
+        db.close();
+        if (result == -1){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public boolean replaceData(List<Symptoms> symptomsList, String msg, int dayOfYear){
         db = this.getWritableDatabase();
         db.delete(Table_name, "day_of_the_year" + "=" + dayOfYear, null);

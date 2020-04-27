@@ -29,6 +29,8 @@ public class ViewLogActivity extends AppCompatActivity {
     List<String[]> data;
     private String[] myDataset;
     public String[] dateIndex;
+    ListView listView;
+    static StableArrayAdapter adapter;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,12 @@ public class ViewLogActivity extends AppCompatActivity {
             myDataset[i] = lD.toString();
         }
 
-        final ListView listView = findViewById(R.id.logListView);
+        listView = findViewById(R.id.logListView);
         final ArrayList<String> list = new ArrayList<String>();
         for (String s: myDataset){
             list.add(s);
         }
-        final StableArrayAdapter adapter = new StableArrayAdapter(this,
+        adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
@@ -77,8 +79,15 @@ public class ViewLogActivity extends AppCompatActivity {
 //                int duration = Toast.LENGTH_SHORT;
 //                Toast toast = Toast.makeText(getApplicationContext(), dayOfYearIndex, duration);
 //                toast.show();
+
             }
         });
+
+    }
+    static public void refresh(){
+        adapter.notifyDataSetChanged();
+
+
     }
     public void addMissingLog(View view){
         Intent intent = new Intent(this, AddMissingLogActivity.class);

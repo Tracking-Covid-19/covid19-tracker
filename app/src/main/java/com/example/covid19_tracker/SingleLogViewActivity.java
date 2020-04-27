@@ -54,10 +54,26 @@ public class SingleLogViewActivity extends AppCompatActivity {
 
 
     }
-    public void goBackToList(View view){
-        Intent intent = new Intent(this, ViewLogActivity.class);
-        startActivity(intent);
+    public void delete(View view){
+        Intent intent = getIntent();
+        mDatabaseHelper = new DatabaseHelper(this);
+        mDatabaseHelper.deleteData(intent.getIntExtra("LogID", 0));
+//        Intent intent2 = new Intent(this, ViewLogActivity.class);
+//        startActivity(intent2);
+        finish();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ViewLogActivity.refresh();
+    }
 
+
+
+    public void goBackToList(View view){
+//        Intent intent = new Intent(this, ViewLogActivity.class);
+//        startActivity(intent);
+        finish();
     }
 
     public void submitChange(View view){
