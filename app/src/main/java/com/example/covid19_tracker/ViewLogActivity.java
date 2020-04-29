@@ -2,8 +2,6 @@ package com.example.covid19_tracker;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -25,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ViewLogActivity extends AppCompatActivity {
-    DatabaseHelper mDatabaseHelper;
+    symptomLogDatabase mSymptomLogDatabase;
     List<String[]> data;
     private String[] myDataset;
     public String[] dateIndex;
@@ -95,8 +92,8 @@ public class ViewLogActivity extends AppCompatActivity {
     }
     private List<String[]> getData(){
         List<String[]> result = new ArrayList<>();
-        mDatabaseHelper = new DatabaseHelper(this);
-        Cursor cor = mDatabaseHelper.getAllData();
+        mSymptomLogDatabase = new symptomLogDatabase(this);
+        Cursor cor = mSymptomLogDatabase.getAllData();
         if (cor.getCount() == 0){
             return result;
         }

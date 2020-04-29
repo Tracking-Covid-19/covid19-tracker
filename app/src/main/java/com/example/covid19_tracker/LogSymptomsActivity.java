@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class LogSymptomsActivity extends AppCompatActivity {
-    DatabaseHelper mDatabaseHelper;
+    symptomLogDatabase mSymptomLogDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_symptoms);
-         mDatabaseHelper = new DatabaseHelper(this);
+         mSymptomLogDatabase = new symptomLogDatabase(this);
         //create a date string.
         String date_n = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());
         //get hold of textview.
@@ -61,11 +61,11 @@ public class LogSymptomsActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int result;
         int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
-        if (mDatabaseHelper.contains(Integer.toString(dayOfYear))){
+        if (mSymptomLogDatabase.contains(Integer.toString(dayOfYear))){
             result = 1;
-            mDatabaseHelper.replaceData(symptomsList, " ", dayOfYear);
+            mSymptomLogDatabase.replaceData(symptomsList, " ", dayOfYear);
         } else {
-            boolean saveResult = mDatabaseHelper.addData(symptomsList, " ", dayOfYear);
+            boolean saveResult = mSymptomLogDatabase.addData(symptomsList, " ", dayOfYear);
             if (saveResult){
                 result = 2;
             } else {

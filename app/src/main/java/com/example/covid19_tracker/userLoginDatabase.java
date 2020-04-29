@@ -9,26 +9,20 @@ import android.util.Log;
 
 import java.util.List;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String Table_name = "symptom_log";
-    private static final String col1 = "day_of_the_year";
+public class userLoginDatabase extends SQLiteOpenHelper {
+    private static final String Table_name = "loginData";
+    private static final String col1 = "username";
 
     SQLiteDatabase db;
-    public DatabaseHelper(Context context){
+    public userLoginDatabase(Context context){
         super(context, Table_name, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE symptom_log (" +
-                "day_of_the_year INTEGER NOT NULL, " +
-                "cough INTEGER NOT NULL, " +
-                "sniffles INTEGER NOT NULL, " +
-                "sore_throat INTEGER NOT NULL, " +
-                "muscle_aches INTEGER NOT NULL, " +
-                "fever INTERGER NOT NULL,"  +
-                "difficulty_breathing INTEGER NOT NULL, " +
-                "remarks_of_the_day TEXT NOT NULL " +
+                "username TEXT NOT NULL UNIQUE, " +
+                "password TEXT NOT NULL " +
                 ")";
         db.execSQL(createTable);
 
@@ -42,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean contains(String id){
         SQLiteDatabase db = getWritableDatabase();
-        String selectString = "SELECT * FROM " + Table_name + " WHERE " + "day_of_the_year" + " =?";
+        String selectString = "SELECT * FROM " + Table_name + " WHERE " + col1 + " =?";
         Cursor cursor = db.rawQuery(selectString, new String[] {id});
 
         boolean hasObject = false;
@@ -53,17 +47,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return hasObject;
     }
+    public int loginMatch(String username, String password){
+        SQLiteDatabase db = getWritableDatabase();
+        String selectString = "SELECT * FROM " + Table_name + " WHERE " + col1 + " =?";
+        Cursor cursor = db.rawQuery(selectString, new String[] {username});
+        String actualPwd;
 
-    public boolean deleteData(int dayOfYear){
+
+        if(cursor.moveToFirst()){
+            actualPwd = cursor.getString(1);
+            cursor.close();
+            db.close();
+        } else {
+            cursor.close(); // no such user
+            db.close();
+            return -1;
+        }
+        char[] pwdChar = password.toCharArray();
+        char[] actChar = actualPwd.toCharArray();
+
+        if (pwdChar.length == actChar.length){
+            for (int i = 0; i < pwdChar.length; i++){
+                if (pwdChar[i] != actChar[i]){
+                    return 0; // wrong password
+                }
+            }
+        } else {
+            return 0; // wrong password
+        }
+        return 1; // Login Success
+
+    }
+
+    public boolean deleteUser(String username){
         db = this.getWritableDatabase();
         int result;
-        result = db.delete(Table_name, "day_of_the_year" + "=" + dayOfYear, null);
+        result = db.delete(Table_name, col1 + "=" + username, null);
         db.close();
         if (result == -1){
             return false;
         } else {
             return true;
         }
+    }
+    public int getDatabaseSize(){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Table_name, null);
+        int count = 0;
+        while (cursor.moveToNext()){
+            count++;
+        }
+        cursor.close();
+        db.close();
+        return count;
+
+
+
     }
 
     public boolean replaceData(List<Symptoms> symptomsList, String msg, int dayOfYear){
@@ -120,36 +159,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-
-
-    
-//    public boolean addData(int item, String col_name){
-//
-//        ContentValues CV = new ContentValues();
-//        CV.put(col_name, item);
-//        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
-//        long result = db.insert(Table_name, null, CV);
-//        if (result == -1){
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-
-//    public boolean addData(String item, String col_name){
-//
-//        ContentValues CV = new ContentValues();
-//        CV.put(col_name, item);
-//        Log.d("DatabaseHelper", "AddData: Adding" + item + "to" + Table_name);
-//        long result = db.insert(Table_name, null, CV);
-//        if (result == -1){
-//            return false;
-//        } else {
-//            return true;
-//        }
-//
-//
-//
-//
-//    }
 }

@@ -4,12 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -24,7 +21,7 @@ public class SingleLogViewActivity extends AppCompatActivity {
     TextView diffyBreathText;
     TextView remarksText;
     TextView displayDate;
-    DatabaseHelper mDatabaseHelper;
+    symptomLogDatabase mSymptomLogDatabase;
     String[] data;
     String dateToDisplay;
     @Override
@@ -56,8 +53,8 @@ public class SingleLogViewActivity extends AppCompatActivity {
     }
     public void delete(View view){
         Intent intent = getIntent();
-        mDatabaseHelper = new DatabaseHelper(this);
-        mDatabaseHelper.deleteData(intent.getIntExtra("LogID", 0));
+        mSymptomLogDatabase = new symptomLogDatabase(this);
+        mSymptomLogDatabase.deleteData(intent.getIntExtra("LogID", 0));
 //        Intent intent2 = new Intent(this, ViewLogActivity.class);
 //        startActivity(intent2);
         finish();
@@ -77,43 +74,68 @@ public class SingleLogViewActivity extends AppCompatActivity {
     }
 
     public void submitChange(View view){
-        mDatabaseHelper = new DatabaseHelper(this);
+        mSymptomLogDatabase = new symptomLogDatabase(this);
         List<Symptoms> symptomsList = new ArrayList<>();
-
-
-        Symptoms cough = new Symptoms("cough", Integer.parseInt(coughText.getText().toString()));
-        Symptoms sniffle = new Symptoms("sniffles", Integer.parseInt(snifflesText.getText().toString()));
-        Symptoms sore = new Symptoms("sore_throat", Integer.parseInt(sorethroatText.getText().toString()));
-        Symptoms muscle = new Symptoms("muscle_ache", Integer.parseInt(muscleacheText.getText().toString()));
-        Symptoms fever = new Symptoms("fever", Integer.parseInt(feverText.getText().toString()));
-        Symptoms breath = new Symptoms("difficulty_breathing", Integer.parseInt(diffyBreathText.getText().toString()));
-
-        symptomsList.add(cough);
-        symptomsList.add(sniffle);
-        symptomsList.add(sore);
-        symptomsList.add(muscle);
-        symptomsList.add(fever);
-        symptomsList.add(breath);
-
-        Intent intent = getIntent();
+        boolean validInput = true;
+        Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         String text;
-        Context context = getApplicationContext();
-        if(mDatabaseHelper.replaceData(symptomsList, " ", intent.getIntExtra("LogID", 0))){
-            text = "Submitted!";
-        } else {
-            text = "Failed to submit";
+        Symptoms cough;
+        Symptoms sniffle;
+        Symptoms sore;
+        Symptoms muscle;
+        Symptoms fever;
+        Symptoms breath;
+        try {
+
+            cough = new Symptoms("cough", Integer.parseInt(coughText.getText().toString()));
+            sniffle = new Symptoms("sniffles", Integer.parseInt(snifflesText.getText().toString()));
+            sore = new Symptoms("sore_throat", Integer.parseInt(sorethroatText.getText().toString()));
+            muscle = new Symptoms("muscle_ache", Integer.parseInt(muscleacheText.getText().toString()));
+            fever = new Symptoms("fever", Integer.parseInt(feverText.getText().toString()));
+            breath = new Symptoms("difficulty_breathing", Integer.parseInt(diffyBreathText.getText().toString()));
+            symptomsList.add(cough);
+            symptomsList.add(sniffle);
+            symptomsList.add(sore);
+            symptomsList.add(muscle);
+            symptomsList.add(fever);
+            symptomsList.add(breath);
+
+        } catch (NumberFormatException e) {
+            validInput = false;
         }
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        mDatabaseHelper.close();
+
+        for (Symptoms s: symptomsList){
+            if (s.intensity > 10 || s.intensity < 0){
+                validInput = false;
+                break;
+            }
+        }
+
+        if (validInput){
+            Intent intent = getIntent();
+            if(mSymptomLogDatabase.replaceData(symptomsList, " ", intent.getIntExtra("LogID", 0))){
+                text = "Submitted!";
+            } else {
+                text = "Failed to submit";
+            }
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            mSymptomLogDatabase.close();
+
+        } else {
+            text = "Invalid Input";
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            mSymptomLogDatabase.close();
+        }
 
     }
 
     private String[] getSingleData(int index){
         String[] result = new String[8];
-        mDatabaseHelper = new DatabaseHelper(this);
-        Cursor cor = mDatabaseHelper.getAllData();
+        mSymptomLogDatabase = new symptomLogDatabase(this);
+        Cursor cor = mSymptomLogDatabase.getAllData();
         if (cor.getCount() == 0){
             return result;
         }
@@ -126,7 +148,7 @@ public class SingleLogViewActivity extends AppCompatActivity {
                 result[7] = cor.getString(7);
             }
         }
-        mDatabaseHelper.close();
+        mSymptomLogDatabase.close();
         return result;
     }
 }

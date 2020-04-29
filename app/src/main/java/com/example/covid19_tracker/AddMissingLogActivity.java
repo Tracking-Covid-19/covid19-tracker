@@ -25,7 +25,7 @@ public class AddMissingLogActivity extends AppCompatActivity {
     TextView feverText;
     TextView diffyBreathText;
     TextView remarksText;
-    DatabaseHelper mDatabaseHelper;
+    symptomLogDatabase mSymptomLogDatabase;
     Spinner daySpinner;
     Spinner monthSpinner;
     int day;
@@ -87,39 +87,49 @@ public class AddMissingLogActivity extends AppCompatActivity {
     }
 
     public void submitChange(View view){
-        mDatabaseHelper = new DatabaseHelper(this);
+        mSymptomLogDatabase = new symptomLogDatabase(this);
         List<Symptoms> symptomsList = new ArrayList<>();
-
-
-        Symptoms cough = new Symptoms("cough", Integer.parseInt(coughText.getText().toString()));
-        Symptoms sniffle = new Symptoms("sniffles", Integer.parseInt(snifflesText.getText().toString()));
-        Symptoms sore = new Symptoms("sore_throat", Integer.parseInt(sorethroatText.getText().toString()));
-        Symptoms muscle = new Symptoms("muscle_ache", Integer.parseInt(muscleacheText.getText().toString()));
-        Symptoms fever = new Symptoms("fever", Integer.parseInt(feverText.getText().toString()));
-        Symptoms breath = new Symptoms("difficulty_breathing", Integer.parseInt(diffyBreathText.getText().toString()));
-
-        symptomsList.add(cough);
-        symptomsList.add(sniffle);
-        symptomsList.add(sore);
-        symptomsList.add(muscle);
-        symptomsList.add(fever);
-        symptomsList.add(breath);
-
-        int dayOfYearToAdd;
-        GregorianCalendar GC = new GregorianCalendar(2020, month, day);
-        dayOfYearToAdd = GC.get(Calendar.DAY_OF_YEAR) - 30;
-
-        int duration = Toast.LENGTH_SHORT;
+        boolean validInput = true;
         String text;
+        int duration = Toast.LENGTH_SHORT;
         Context context = getApplicationContext();
-        if(mDatabaseHelper.replaceData(symptomsList, " ", dayOfYearToAdd)){
-            text = "Submitted!";
-        } else {
-            text = "Failed to submit";
+        try {
+
+            Symptoms cough = new Symptoms("cough", Integer.parseInt(coughText.getText().toString()));
+            Symptoms sniffle = new Symptoms("sniffles", Integer.parseInt(snifflesText.getText().toString()));
+            Symptoms sore = new Symptoms("sore_throat", Integer.parseInt(sorethroatText.getText().toString()));
+            Symptoms muscle = new Symptoms("muscle_ache", Integer.parseInt(muscleacheText.getText().toString()));
+            Symptoms fever = new Symptoms("fever", Integer.parseInt(feverText.getText().toString()));
+            Symptoms breath = new Symptoms("difficulty_breathing", Integer.parseInt(diffyBreathText.getText().toString()));
+
+            symptomsList.add(cough);
+            symptomsList.add(sniffle);
+            symptomsList.add(sore);
+            symptomsList.add(muscle);
+            symptomsList.add(fever);
+            symptomsList.add(breath);
+        } catch (NumberFormatException e){
+            validInput = false;
         }
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        mDatabaseHelper.close();
+        if (validInput){
+            int dayOfYearToAdd;
+            GregorianCalendar GC = new GregorianCalendar(2020, month, day);
+            dayOfYearToAdd = GC.get(Calendar.DAY_OF_YEAR) - 30;
+            if(mSymptomLogDatabase.replaceData(symptomsList, " ", dayOfYearToAdd)){
+                text = "Submitted!";
+            } else {
+                text = "Failed to submit";
+            }
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            mSymptomLogDatabase.close();
+        } else {
+            text = "Invalid Input";
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            mSymptomLogDatabase.close();
+        }
+
 
     }
     public void goBackToList(View view){
